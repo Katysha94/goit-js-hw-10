@@ -8,6 +8,9 @@ const loader = document.querySelector(".loader");
 const error = document.querySelector(".error");
 const catInfo = document.querySelector(".cat-info");
 
+loader.classList.add('is-hidden');
+error.classList.add('is-hidden');
+
 let arrayBreeds = [];
 
 fetchBreeds()
