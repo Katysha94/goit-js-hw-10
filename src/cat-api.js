@@ -18,7 +18,7 @@ export function fetchBreeds(){
 
 export function fetchCatByBreed(breedId) {
     return axios
-        .get(`${BASE_URL}/images/search?api_key=${API_KEY}&breed_ids=${breedId}`)
+        .get(`${BASE_URL}/images/search?breed_ids=${breedId}`)
         .then(response => {
             if (response.data) {
                 return response.data;}
