@@ -6,7 +6,7 @@ const API_KEY = 'live_UtA83tKN466rb72Ooqw8yIc9JtTyJj1MlqLll5TbrGnYVUFyso6oNIUxkX
 
 export function fetchBreeds(){
     return axios
-        .get(`${BASE_URL}/breeds?api_key=${API_KEY}`)
+        .get(`${BASE_URL}/breeds`)
         .then(response => {
             console.log(response)
             if (response.status !== 200) {

@@ -8,6 +8,7 @@ const loader = document.querySelector(".loader");
 const error = document.querySelector(".error");
 const catInfo = document.querySelector(".cat-info");
 
+
 loader.classList.add('is-hidden');
 error.classList.add('is-hidden');
 
@@ -17,6 +18,7 @@ fetchBreeds()
     .then(data => {
         breedSelector.classList.remove("is-hidden");
         loader.classList.remove("is-hidden");
+        loader.textContent = '';
         data.forEach(element => {
             arrayBreeds.push({ text: element.name, value: element.id });
         });
@@ -37,10 +39,13 @@ breedSelector.addEventListener('change', breedSelection);
 
 function breedSelection(evt) {
     const breedId = evt.currentTarget.value;
-    fetchCatByBreed(breedId, loader, catInfo)
+    loader.classList.remove('is-hidden');
+    catInfo.classList.add('is-hidden');
+
+    fetchCatByBreed(breedId)
         .then(data => {     
         const { url, breeds } = data[0];
-            const markupCatDesc=
+        const markupCatDesc=
       `<div class="cat-info">
         <img class="cat-images" src="${url}" alt="${breeds[0].name}" width="320"/></div>
         <div class="cat-info-container">
