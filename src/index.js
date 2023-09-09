@@ -1,12 +1,33 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api'
 import SlimSelect from 'slim-select'
 import Notiflix from 'notiflix'
-fetchBreeds();
 
 const breedSelector = document.querySelector(".breed-select");
 const loader = document.querySelector(".loader");
 const error = document.querySelector(".error");
 const catInfo = document.querySelector(".cat-info");
+
+let arrayBreeds = [];
+
+fetchBreeds()
+    .then(data => {
+        breedSelector.classList.remove("is-hidden");
+        loader.classList.remove("is-hidden");
+        data.forEach(element => {
+            arrayBreeds.push({ text: element.name, value: element.id });
+        });
+        
+        new SlimSelect({
+            select: breedSelector,
+            data: arrayBreeds,
+        });
+    })
+    .catch(error => {
+        loader.classList.add("is-hidden");
+        error.classList.remove("is-hidden");
+
+        Notiflix.Notify.failure(error.message);
+    });
 
 breedSelector.addEventListener('change', breedSelection);
 
