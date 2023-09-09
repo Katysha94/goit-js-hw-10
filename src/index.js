@@ -1,6 +1,7 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api'
 import SlimSelect from 'slim-select'
-import Notiflix from 'notiflix'
+import Notiflix from 'notiflix';
+import 'slim-select/dist/slimselect.css'
 
 const breedSelector = document.querySelector(".breed-select");
 const loader = document.querySelector(".loader");
@@ -43,7 +44,8 @@ function breedSelection(evt) {
         <h2 class="cat-name">${breeds[0].name}</h2>
         <p class="cat-desc">${breeds[0].description}</p>
         <p class="cat-info-temp"><span class="cat-temp">Temperament:</span>${breeds[0].temperament}</p></div>`;    
-    catInfo.innerHTML = markupCatDesc;        
+    catInfo.innerHTML = markupCatDesc;      
+      
         })
         .catch(error => {
             Notiflix.Notify.failure(error.message)
